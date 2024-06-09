@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
 
 const UserSchema = new mongoose.Schema({
@@ -35,6 +35,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  restaurant: {
+    type: Schema.Types.ObjectId,
+    ref: "Restaurant"
+  }
 });
 
 UserSchema.plugin(uniqueValidator);
