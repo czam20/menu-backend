@@ -32,8 +32,7 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
-    unique: true,
+    required: true
   },
   restaurant: {
     type: Schema.Types.ObjectId,
@@ -41,7 +40,7 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-UserSchema.plugin(uniqueValidator);
+UserSchema.plugin(uniqueValidator, { message: '{PATH} debe ser único' });
 
 const UserModel = mongoose.model("User", UserSchema);
 export default UserModel;

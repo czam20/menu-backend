@@ -83,7 +83,7 @@ const RestaurantSchema = new mongoose.Schema({
   },
 });
 
-RestaurantSchema.plugin(uniqueValidator);
+RestaurantSchema.plugin(uniqueValidator, { message: '{PATH} debe ser único' });
 
 const RestaurantModel = mongoose.model("Restaurant", RestaurantSchema);
 export default RestaurantModel;
