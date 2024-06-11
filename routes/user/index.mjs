@@ -11,9 +11,11 @@ router.post("/restaurant/:id/waiter", async (req, res) => {
     });
     await newUser.save();
 
+    const {password, ...user} = newUser._doc;
+
     res.status(201).send({
       message: "Mesero creado",
-      user: newUser,
+      user,
     });
   } catch (error) {
     res.status(400).send({ error: error.message });

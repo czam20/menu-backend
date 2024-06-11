@@ -16,9 +16,11 @@ router.post("/register", async (req, res) => {
     });
     await newUser.save();
 
+    const {password, ...user} = newUser._doc;
+    
     res.status(201).send({
       message: "Restaurante creado con exito",
-      user: newUser,
+      user,
       restaurant: newRestaurant,
     });
   } catch (error) {
@@ -30,13 +32,14 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const user = await UserModel.findOne({ email: req.body.email });
+    const user = await UserModel.findOne({ email: req.body.email }).populate("restaurant")
 
     if (!user) {
       res.status(404).send({ error: "Usuario no registrado" });
     } else if (user.password === req.body.password) {
+      const {password, ...userLogged} = user._doc
       res.status(200).send({
-        user,
+        user: userLogged,
       });
     } else {
       res.status(400).send({
