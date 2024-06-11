@@ -2,6 +2,9 @@ import mongoose, { Schema } from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
 
 const PlateSchema = new mongoose.Schema({
+  photo: {
+    type: String
+  },
   name: {
     type: String,
     required: true,
