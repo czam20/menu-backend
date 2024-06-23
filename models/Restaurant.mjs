@@ -35,28 +35,27 @@ const PlateSchema = new mongoose.Schema({
 });
 
 const OrderSchema = new mongoose.Schema({
-  platos: [PlateSchema],
+  platos: {
+    type: String,
+    required: true
+  },
   client: {
     fullname: {
       type: String,
-      required: true,
     },
     dni: {
       type: String,
-      required: true,
     },
     address: {
       type: String,
     },
   },
-  totalAmmount: {
-    type: Number,
-    required: true,
-  },
   table: {
     type: Number,
-    required: true,
   },
+  confirmed: {
+    type: Boolean
+  }
 });
 
 const RestaurantSchema = new mongoose.Schema({
